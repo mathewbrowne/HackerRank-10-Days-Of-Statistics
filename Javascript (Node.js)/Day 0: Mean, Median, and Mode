@@ -1,0 +1,27 @@
+function processData(input) {
+    const split = input.split(/\r?\n/);
+    const N = split[0];
+    const array = split[1].split(" ").map(Number);
+    
+    const avg = array.reduce((a, b) => a + b, 0) / N;
+    console.log(avg.toFixed(1));
+    
+    array.sort((a, b) => a - b);
+    const midpoint = Math.floor(array.length / 2);
+    if(array.length % 2 === 1){
+        //odd length so just return midpoint
+        var median = array[midpoint];
+    } else {
+        // even length
+        var median = (array[midpoint - 1] + array[midpoint]) / 2; 
+    }
+    console.log(median.toFixed(1));
+    
+    var unique_set = new Set(array);
+    let obj = {};
+    unique_set.forEach(number => obj[number] = 0);
+    array.forEach(number => obj[number]++);
+    var arr = Object.keys(obj).map(k => [k, obj[k]]);
+    arr.sort((a,b) => b[1]-a[1]);
+    console.log(arr[0][0]);
+} 
