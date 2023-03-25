@@ -1,0 +1,10 @@
+function weightedMean(X, W) {
+    var weighted_sum = 0;
+    for (const [i, value] of X.entries()) {
+        weighted_sum+=(value*W[i]);
+    };
+    var sum_of_weights = W.reduce((total, current) => {
+        return total + current;
+    }, 0);
+    console.log( (weighted_sum/sum_of_weights).toFixed(1) );
+}
