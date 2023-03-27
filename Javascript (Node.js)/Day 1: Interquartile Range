@@ -1,0 +1,39 @@
+/*
+ * Complete the 'interQuartile' function below.
+ *
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY values
+ *  2. INTEGER_ARRAY freqs
+ */
+
+function median(array){
+    array.sort((a, b) => a - b);
+    const midpoint = Math.floor(array.length / 2);
+    
+    if(array.length % 2 === 1){
+        //odd length so just return midpoint
+        return array[midpoint];
+    } else {
+        // even length
+        return (array[midpoint - 1] + array[midpoint]) / 2; 
+    }
+}
+
+function interQuartile(values, freqs) {
+    // Print your answer to 1 decimal place within this function
+    var expanded = [];
+    values.forEach(function callback(value, index) {
+        var freq = freqs[index];
+        expanded.push(...Array(freq).fill(value));
+    });
+    
+    expanded.sort((a, b) => a - b);
+    const midpoint = Math.floor(expanded.length / 2);
+    
+    const array_first_half = expanded.slice(0, midpoint);
+    const array_second_half = expanded.slice(-midpoint);
+    
+    const interquartile_range = median(array_second_half) - median(array_first_half)
+    console.log( interquartile_range.toFixed(1) );
+    
+}
