@@ -1,0 +1,14 @@
+function stdDev(arr) {
+    // Print your answers to 1 decimal place within this function
+    let sum = arr.reduce((a, b) => a + b);
+    let quantity = arr.length;
+    let mean = sum/quantity;
+    
+    let stddevarr = [];
+    
+    arr.forEach(function callback(value, index) {
+        stddevarr.push(Math.pow((value-mean), 2));
+    });
+    
+    console.log( Math.sqrt(stddevarr.reduce((a, b) => a + b) / quantity).toFixed(1) );
+}
